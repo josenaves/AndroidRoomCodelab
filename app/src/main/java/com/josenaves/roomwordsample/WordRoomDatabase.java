@@ -32,7 +32,7 @@ public abstract class WordRoomDatabase extends RoomDatabase {
 
     private static RoomDatabase.Callback callback = new RoomDatabase.Callback() {
         @Override
-        public void onOpen(@NonNull SupportSQLiteDatabase db) {
+        public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onOpen(db);
             new PopulateDbAsync(instance).execute();
         }
@@ -49,6 +49,12 @@ public abstract class WordRoomDatabase extends RoomDatabase {
         protected Void doInBackground(Void... voids) {
             dao.insert(new Word("Hello"));
             dao.insert(new Word("World"));
+            dao.insert(new Word("this"));
+            dao.insert(new Word("is"));
+            dao.insert(new Word("Room"));
+            dao.insert(new Word("LiveData"));
+            dao.insert(new Word("RecyclerView"));
+
             return null;
         }
     }
